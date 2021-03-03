@@ -13,7 +13,7 @@ const verifyToken=(req, res, next)=>{
         }) 
     }catch(err){
         console.log(err)
-        res.redirect("admin/login")
+        res.redirect("auth/login")
         }
     }
 

@@ -1,6 +1,6 @@
-var express = require('express');
+const express = require('express');
 const { home } = require('../controllers/IndexController');
-var router = express.Router();
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', home);

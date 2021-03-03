@@ -6,6 +6,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser')
 const mongoose=require("mongoose")
 const { mongodbUrl}=require("./config/config")
+const http = require('http');
 
 const indexRouter = require('./routes/IndexRouter');
 const authRouter = require('./routes/AuthRouter');
@@ -28,10 +29,8 @@ db.on("connected",()=>{
   console.log("connected")
 })
 
-
-
-
 const app = express();
+const server = http.createServer(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -64,4 +63,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = {app, server};
