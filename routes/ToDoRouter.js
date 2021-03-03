@@ -1,7 +1,6 @@
 const { getToDos, addnewToDo, deleteToDo,editToDo } = require('../controllers/ToDoController');
 
 const express = require('express');
-const { chechkSign } = require('../middlewares/checkSign');
 const router = express.Router();
 
 
