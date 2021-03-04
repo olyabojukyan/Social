@@ -1,8 +1,9 @@
 const express = require('express');
-const { home } = require('../controllers/IndexController');
+const { home, chatView } = require('../controllers/IndexController');
+const { verifyToken } = require('../middlewares/auth');
 const router = express.Router();
 
-/* GET home page. */
 router.get('/', home);
+router.get("/chat", verifyToken, chatView)
 
 module.exports = router;

@@ -31,7 +31,19 @@ db.on("connected",()=>{
 
 const app = express();
 const server = http.createServer(app);
+const io=require("socket.io")(server)
 
+io.on("connection",(socket)=>{
+  console.log("new user conected")
+  console.log(socket.id)
+   socket.on("new user",(data)=>{
+    console.log("userData",data)
+  })
+  socket.on("new chat",(data)=>{
+    console.log("=>",data)  
+    io.emit("new chat",data)
+  })
+})
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

@@ -6,7 +6,9 @@
 
 const app = require('../app').app;
 const debug = require('debug')('todoapp:server');
-const server= require('../app').server;
+const server=require('../app').server;
+
+
 
 /**
  * Get port from environment and store in Express.
@@ -18,7 +20,6 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-
 
 
 /**

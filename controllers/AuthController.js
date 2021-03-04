@@ -1,9 +1,9 @@
 const { UserModel } = require("../models/UserModel")
-const { jwtSign } = require("../config/config")
+const {jwtSign}=require("../config/config")
 const jwt=require("jsonwebtoken")
 
 class AuthController{
- 
+
     registerView(req,res){
         let message=""
         res.render("register",{message:message})
@@ -22,6 +22,8 @@ class AuthController{
              password:req.body.password,
 
         })
+   
+
         let result=await newUser.save()
         res.redirect("/auth/login")
        }catch(err){
@@ -49,18 +51,20 @@ class AuthController{
           if(!passwordOk){
             return res.render("login",{message:`Email or password is incorrect`})
           }
-          let payload={
-            id:user._id,
-            username: user.username,
-            email:user.email
-          }
-          let token=jwt.sign(payload,jwtSign, {expiresIn:"10m"})
-          console.log("token", token) 
-          res.cookie("x-access-token", token, {
-            httpOnly: true,
-            maxAge: 24*60*60*1000,
-          })
-          res.redirect("/admin")
+          
+              //creating token
+       let payload={
+        id:user._id,
+        username:user.username,
+        email:user.email
+      }
+       let token=jwt.sign(payload,jwtSign,{expiresIn:"10m"})
+       console.log("token",token)
+       res.cookie("x-access-token",token,{
+         httpOnly:true,
+         maxAge:24*60*60*1000,
+       })
+         res.redirect("/admin")
 
          }catch(err){
              console.log(err)

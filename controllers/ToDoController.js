@@ -1,7 +1,7 @@
 const { ToDo } = require("../models/toDoModel")
 
 
-class ToDoControoler {
+class ToDoController {
    async addnewToDo(req,res){
        let todo=req.body.todo
        let result=await ToDo.create({item:todo})
@@ -45,4 +45,4 @@ class ToDoControoler {
     }
 }
 
-module.exports=new ToDoControoler()
+module.exports=new ToDoController()
